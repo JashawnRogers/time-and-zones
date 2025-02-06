@@ -8,11 +8,33 @@ const timezoneList = document.getElementById('tzList');
 
 MicroModal.init();
 
-timezone.innerText = `${dayjs.tz.guess()}`;
 date.innerText = `${dayjs().format('dddd, MMMM D')}`;
 
-// Get interval ID so that is can be cleared when user chooses timezone
-let intervalID = setInterval(() => time.innerText = `${dayjs().format("h:mm:ss A")}`, 1000);
+
+let intervalID;
+
+(function startIntervalOnLoad() {
+    intervalID = setInterval(() => time.innerText = `${dayjs().format("h:mm:ss A")}`, 1000);
+    timezone.innerText = `${dayjs.tz.guess()}`;
+})()
+
+function startTimezoneInterval(userTimezone) {
+    intervalID = setInterval(() => time.innerText = `${dayjs().tz(userTimezone).format("h:mm:ss A")}`, 1000);
+    timezone.innerText = `${timezoneList.options[timezoneList.selectedIndex].text}`;
+}
+
+function checkIfIntervalIsRunning(id) {
+    if (id) {
+        console.log('interval running: ', id);
+    } else {
+        console.log('No interval is running');
+    }
+}
+
+function stopInterval(id) {
+    clearInterval(id);
+    id = null;
+}
 
 
 btn.addEventListener('click', () => {
@@ -24,8 +46,8 @@ btn.addEventListener('click', () => {
 })
 
 modalCloseBtn.addEventListener('click', () => {
-    clearInterval(intervalID);
    const userTimezone = timezoneList.value;
-   timezone.innerText = `${timezoneList.options[timezoneList.selectedIndex].text}`;
-   setInterval(() => time.innerText = `${dayjs().tz(userTimezone).format("h:mm:ss A")}`, 1000);
+   checkIfIntervalIsRunning(intervalID);
+   stopInterval(intervalID);
+   startTimezoneInterval(userTimezone);
 })
