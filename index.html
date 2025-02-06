@@ -15,13 +15,6 @@
         <div class="timezone-wrapper">
             <p id="timezone"></p>
             <button id="tzModal"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path fill="#fafafa" d="M50.7 58.5L0 160l208 0 0-128L93.7 32C75.5 32 58.9 42.3 50.7 58.5zM240 160l208 0L397.3 58.5C389.1 42.3 372.5 32 354.3 32L240 32l0 128zm208 32L0 192 0 416c0 35.3 28.7 64 64 64l320 0c35.3 0 64-28.7 64-64l0-224z"/></svg></button>
-            <!-- <select name="timezones" id="tzList">
-                <option value="America/New_York">America/New York</option>
-                <option value="America/Chicago">America/Chicago</option>
-                <option value="America/Denver">America/Denver</option>
-                <option value="America/Los_Angeles">America/Los Angeles</option>
-                <option value="America/Phoenix">America/Phoenix</option>
-            </select> -->
         </div>
         <div class="modal micromodal-slide" id="modal-1" aria-hidden="true">
             <div class="modal__overlay" tabindex="-1" data-micromodal-close>
@@ -43,7 +36,7 @@
                 </main>
                 <footer class="modal__footer">
                   <!-- <button class="modal__btn modal__btn-primary">Continue</button> -->
-                  <button class="modal__btn" data-micromodal-close aria-label="Close this dialog window">Close</button>
+                  <button class="modal__btn" data-micromodal-close aria-label="Close this dialog window" id="closeBtn">Close</button>
                 </footer>
               </div>
             </div>
